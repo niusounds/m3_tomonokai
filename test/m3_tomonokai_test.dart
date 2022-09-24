@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('TomonokaiParser', () {
-    String testSource;
+    late String testSource;
 
     setUp(() {
       final testFile = File('test.html');

@@ -10,7 +10,7 @@ class TomonokaiParser {
 
   const TomonokaiParser({
     this.sourceUrl = 'https://www.m3net.jp/friend/index.php',
-  }) : assert(sourceUrl != null);
+  });
 
   Future<List<Article>> loadArticles() async {
     final client = HttpClient();
@@ -31,18 +31,18 @@ class TomonokaiParser {
     final trElements = table.getElementsByTagName('tr');
 
     final results = <Article>[];
-    String currentDate;
+    String? currentDate;
 
-    trElements.forEach((tr) {
+    for (final tr in trElements) {
       if (tr.classes.contains('top')) {
-        currentDate = tr.querySelector('td').text.trim();
+        currentDate = tr.querySelector('td')!.text.trim();
       } else {
-        final td = tr.querySelector('td');
+        final td = tr.querySelector('td')!;
         final link = td.querySelector('a.link');
         final image = td.querySelector('img');
 
         final linkUrl = link != null ? link.attributes['href'] : null;
-        final title = link?.text?.trim();
+        final title = link?.text.trim();
         var imageUrl = image != null ? image.attributes['src'] : null;
 
         final description =
@@ -60,7 +60,7 @@ class TomonokaiParser {
           description: description.trim(),
         ));
       }
-    });
+    }
 
     return results;
   }
