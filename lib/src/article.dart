@@ -1,9 +1,9 @@
 class Article {
-  final String title;
-  final String description;
-  final String date;
-  final String imageUrl;
-  final String linkUrl;
+  final String? title;
+  final String? description;
+  final String? date;
+  final String? imageUrl;
+  final String? linkUrl;
 
   const Article({
     this.title,
